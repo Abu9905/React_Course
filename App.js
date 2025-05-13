@@ -1,14 +1,5 @@
-/* 
-  <div>
-      <div>
-          <h1 id="heading">Hello world from react</h1>
-          <h2>I am h2 tage</h2>
-      </div>
-  </div>
-
-  RactElement(Object) => HTML(Browser Understands)
-*/
-
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
 const parent = React.createElement(
     "div", 

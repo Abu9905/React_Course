@@ -1,0 +1,37 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "this is namaste react by akshay saini",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abu9905/React_Course.git"
+  },
+  "keywords": [
+    "react",
+    "full",
+    "course"
+  ],
+  "author": "Abu shama",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abu9905/React_Course/issues"
+  },
+  "homepage": "https://github.com/Abu9905/React_Course#readme",
+  "devDependencies": {
+    "parcel": "^2.14.4"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "browserslist": [ 
+    "last 2 chrome versions",
+    "last 2 firefox versions",
+    "last 2 edge versions"
+  ]
+}
