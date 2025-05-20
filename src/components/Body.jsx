@@ -1,71 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import RestaurantCard from "./RestaurantCard";
+import resObj from "../utils/mockData";
+import { useState } from "react";
 
-/*
-  header
-    -> logo
-    -> navItems
-    -> cart
-  Body
-    -> search bar
-    -> RestaurantContainer
-      -> RestaurantCard
-        -> image
-        -> name
-        -> rating
-        -> cuisine
-  footer
-    -> contact
-    -> about
-    -> copyright  
- */
-
-// ======== Header =========//
-const Header = () => {
-  return (
-    <div className="header">
-      <div className="logo-container">
-        <img
-          className="logo"
-          src="https://www.logodesign.net/logo/smoking-burger-with-lettuce-3624ld.png?nwm=1&nws=1&industry=All&sf=&txt_keyword="
-          alt="logo"
-        />
-      </div>
-
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-// ========= End of Header =========//
-
-// ===== RestaurantCard =====//
-const RestaurantCard = (props) => {
-  const { resData } = props;
-  const { info } = resData;
-
-  return (
-    <div className="res-card">
-      <img
-        className="res-logo"
-        src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${info.cloudinaryImageId}`}
-        alt="res-logo"
-      />
-      <h3>{info.name}</h3>
-      <h4>{info.cuisines.join(", ")}</h4>
-      <h4>{info.avgRatingString} stars</h4>
-      <h4>{info.costForTwo}</h4>
-      <h4>{info.deliveryTime} mins</h4>
-    </div>
-  );
-};
-// ==== End of RestaurantCard =====//
 
 // ======= Apis =========//
 const resObj = [
@@ -429,14 +365,84 @@ const resObj = [
 ];
 // ==== End of Restaurant List ====//
 
+import RestaurantCard from "./RestaurantCard";
 // ==== Body ====//
 const Body = () => {
+
+    // local state variable - Super powerful JS Variables
+    let [listOfRestaurants, setListOfRestaurants] = useState(resObj);
+
+    // Normal Js Variables
+    // let listOfRestaurants = [];
+
+    // Normal Js Variables
+//     let listOfRestaurants = [
+//     {
+//     info: {
+//       id: "10894",
+//       name: "Pizza Hut",
+//       cloudinaryImageId: "2b4f62d606d1b2bfba9ba9e5386fabb7",
+//       locality: "2nd Stage",
+//       areaName: "BTM Layout",
+//       costForTwo: "₹350 for two",
+//       cuisines: ["Pizzas"],
+//       avgRating: 3.8,
+//       parentId: "721",
+//       avgRatingString: "3.8",
+//       totalRatingsString: "10K+",
+//       deliveryTime: 31,
+//     },
+    
+//     },
+//     {
+//     info: {
+//       id: "10895",
+//       name: "Domino's Pizza",
+//       cloudinaryImageId: "2b4f62d606d1b2bfba9ba9e5386fabb7",
+//       locality: "2nd Stage",
+//       areaName: "BTM Layout",
+//       costForTwo: "₹350 for two",
+//       cuisines: ["Pizzas"],
+//       avgRating: 4.5,
+//       parentId: "721",
+//       avgRatingString: "4.5",
+//       totalRatingsString: "10K+",
+//       deliveryTime: 31,
+//     },
+    
+//     },
+// ];
+    
+
   return (
     <div className="body">
-      <div className="search">Search</div>
+      <div className="filter">
+        {/* <button className="filter-btn" onClick={()=>{
+// ==================================================        
+            // Filter logic here ui not update :
+            listOfRestaurants = listOfRestaurants.filter(
+                (res)=>res.info.avgRating>4
+            );
+            console.log(listOfRestaurants);
+            }}>
+              To Rated Restaurant
+            </button> */}
+{/* ======================================= */}
+
+            <button className="filter-btn" onClick={()=>{
+                
+            // Filter logic here :
+            const filterList = listOfRestaurants.filter(
+                (res)=>res.info.avgRating>4
+            );
+            setListOfRestaurants(filterList);
+            }}>
+              To Rated Restaurant
+            </button>
+      </div>
 
       <div className="res-container">
-        {resObj.map((restaurant) => (
+        {listOfRestaurants.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
@@ -445,17 +451,4 @@ const Body = () => {
 };
 // ==== End of Body ====//
 
-// === Main Container ===//
-const AppLayout = () => {
-  return (
-    <div className="app">
-      <Header />
-      <Body />
-    </div>
-  );
-};
-// === End of Main Container ===//
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(<AppLayout />);
+export default Body;
